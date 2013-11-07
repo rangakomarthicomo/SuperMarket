@@ -1,6 +1,6 @@
 Application\Sonata\SuperMarketBundle\Entity\Brand:
     type: entity
-    table: null
+    table: supermarket_brand
     repositoryClass: Application\Sonata\SuperMarketBundle\Entity\BrandRepository
     fields:
         id:

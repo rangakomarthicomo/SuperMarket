@@ -1,6 +1,6 @@
 Application\Sonata\SuperMarketBundle\Entity\OrderItem:
     type: entity
-    table: null
+    table: supermarket_orderitem
     repositoryClass: Application\Sonata\SuperMarketBundle\Entity\OrderItemRepository
     fields:
         id:

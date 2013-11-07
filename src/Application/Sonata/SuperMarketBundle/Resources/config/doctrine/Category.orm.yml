@@ -1,6 +1,6 @@
 Application\Sonata\SuperMarketBundle\Entity\Category:
     type: entity
-    table: null
+    table: supermarket_category
     repositoryClass: Application\Sonata\SuperMarketBundle\Entity\CategoryRepository
     fields:
         id:

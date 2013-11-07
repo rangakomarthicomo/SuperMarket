@@ -1,6 +1,6 @@
 Application\Sonata\SuperMarketBundle\Entity\PurchaseOrder:
     type: entity
-    table: null
+    table: supermarket_purchaseorder
     repositoryClass: Application\Sonata\SuperMarketBundle\Entity\PurchaseOrderRepository
     fields:
         id:
