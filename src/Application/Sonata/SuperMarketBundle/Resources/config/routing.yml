@@ -1,0 +1,7 @@
+application_sonata_super_market_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ApplicationSonataSuperMarketBundle:Default:index }
+application_sonata_supermarket_price:
+    pattern: /price
+    defaults: { _controller: ApplicationSonataSuperMarketBundle:Price:getPrice }
+

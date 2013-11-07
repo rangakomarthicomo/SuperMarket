@@ -1,0 +1,42 @@
+parameters:
+#    application_sonata_super_market.example.class: Application\Sonata\SuperMarketBundle\Example
+
+services:
+#    application_sonata_super_market.example:
+#        class: %application_sonata_super_market.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    application_sonata_super_market.admin.brand:
+        class: Application\Sonata\SuperMarketBundle\Admin\BrandAdmin
+        arguments: [~, Application\Sonata\SuperMarketBundle\Entity\Brand, ApplicationSonataSuperMarketBundle:BrandAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Invotary, label: Brand}
+
+    application_sonata_super_market.admin.category:
+        class: Application\Sonata\SuperMarketBundle\Admin\CategoryAdmin
+        arguments: [~, Application\Sonata\SuperMarketBundle\Entity\Category, ApplicationSonataSuperMarketBundle:CategoryAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Invotary, label: Category}
+
+    application_sonata_super_market.admin.product:
+        class: Application\Sonata\SuperMarketBundle\Admin\ProductAdmin
+        arguments: [~, Application\Sonata\SuperMarketBundle\Entity\Product, ApplicationSonataSuperMarketBundle:ProductAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Invotary, label: Product}
+
+    application_sonata_super_market.admin.customer:
+        class: Application\Sonata\SuperMarketBundle\Admin\CustomerAdmin
+        arguments: [~, Application\Sonata\SuperMarketBundle\Entity\Customer, ApplicationSonataSuperMarketBundle:CustomerAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Customer Block, label: Customer}
+
+    application_sonata_super_market.admin.purchase_order:
+        class: Application\Sonata\SuperMarketBundle\Admin\PurchaseOrderAdmin
+        arguments: [~, Application\Sonata\SuperMarketBundle\Entity\PurchaseOrder, ApplicationSonataSuperMarketBundle:PurchaseOrderAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Order Block, label: PurchaseOrder}
+
+    application_sonata_super_market.admin.order_item:
+        class: Application\Sonata\SuperMarketBundle\Admin\OrderItemAdmin
+        arguments: [~, Application\Sonata\SuperMarketBundle\Entity\OrderItem, ApplicationSonataSuperMarketBundle:OrderItemAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Order Block, label: OrderItem}

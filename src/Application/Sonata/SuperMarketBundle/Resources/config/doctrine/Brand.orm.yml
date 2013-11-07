@@ -1,0 +1,21 @@
+Application\Sonata\SuperMarketBundle\Entity\Brand:
+    type: entity
+    table: null
+    repositoryClass: Application\Sonata\SuperMarketBundle\Entity\BrandRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+        country:
+            type: string
+            length: 255
+    oneTomany:
+      product:
+        targetEntity: Product
+        mappedBy: brand
+    lifecycleCallbacks: {  }

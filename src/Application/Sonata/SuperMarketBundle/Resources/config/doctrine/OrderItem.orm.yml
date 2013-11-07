@@ -1,0 +1,24 @@
+Application\Sonata\SuperMarketBundle\Entity\OrderItem:
+    type: entity
+    table: null
+    repositoryClass: Application\Sonata\SuperMarketBundle\Entity\OrderItemRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        quantity:
+            type: integer
+    manyToOne:
+     purchaseorder:
+         targetEntity: PurchaseOrder
+         joinColumn:
+           name: purchase_id
+           referencedColumnName: id
+     products:
+        targetEntity: Product
+        joinColumn:
+          name: product_order_id
+          referencedColumnName: id
+    lifecycleCallbacks: {  }

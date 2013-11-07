@@ -1,0 +1,83 @@
+
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block form %}
+    
+    {{ parent() }}
+
+<script>
+    
+    function clickme(id)
+    {
+       $(".price").html("");
+      
+       var idstring = id.split("_"); 
+       
+      idstring[3] = "price";
+       
+       var priceid = idstring[0]+"_"+idstring[1]+"_"+idstring[2]+"_"+idstring[3];
+       
+       var idvalue = $('#'+id).val();
+        $.ajax({
+                url : "{{ path('application_sonata_supermarket_price') }}",
+                type: "POST",
+                data :{
+                    'productid' : idvalue
+                },
+                success: function(data)
+                {
+                    $("#"+priceid).attr("value",data);  
+                },
+                error: function()
+                {
+                       alert("not ok");
+                }
+                });
+    }
+    
+    
+</script>
+<script>
+
+    function inputValue(id)
+    {
+       var idstring = id.split("_"); 
+       
+       idstring[3] = "total";
+       
+       var quantityid = idstring[0]+"_"+idstring[1]+"_"+idstring[2]+"_"+idstring[3];
+       
+       var idstring2 = id.split("_"); 
+       
+       idstring2[3] = "price";
+       
+       var priceid = idstring2[0]+"_"+idstring2[1]+"_"+idstring2[2]+"_"+idstring2[3];
+       
+        
+      $(".total").html("");
+      var productprice = $("#"+priceid).val();
+      var idvalue = document.getElementById(id).value;
+      var product = productprice*idvalue;
+      $('#'+quantityid).attr("value",product);
+      
+    }
+
+    
+</script>
+ <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+
+    $('.datepicker').datepicker({
+	flat: true,
+	date: '2008-07-31',
+	current: '2008-07-31',
+	calendars: 1,
+	starts: 1,
+        dateFormat: 'yy-mm-dd' 
+        
+});
+    
+ </script>
+
+
+{% endblock %}

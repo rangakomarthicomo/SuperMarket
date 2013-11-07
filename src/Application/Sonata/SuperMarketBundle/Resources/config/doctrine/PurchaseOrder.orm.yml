@@ -1,0 +1,28 @@
+Application\Sonata\SuperMarketBundle\Entity\PurchaseOrder:
+    type: entity
+    table: null
+    repositoryClass: Application\Sonata\SuperMarketBundle\Entity\PurchaseOrderRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        status:
+            type: string
+            length: 255
+        orderDate:
+            type: date
+            column: order_date
+    manyToOne:
+      customer:
+        targetEntity: Customer
+        joinColumn:
+           name: customer_id
+           referencedColumnName: id
+    oneToMany:
+     orderitem:
+       targetEntity: OrderItem
+       mappedBy: purchaseorder
+       cascade: [persist, remove]
+    lifecycleCallbacks: {  }

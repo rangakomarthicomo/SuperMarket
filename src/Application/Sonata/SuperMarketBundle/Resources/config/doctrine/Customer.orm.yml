@@ -1,0 +1,37 @@
+Application\Sonata\SuperMarketBundle\Entity\Customer:
+    type: entity
+    table: null
+    repositoryClass: Application\Sonata\SuperMarketBundle\Entity\CustomerRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        firstName:
+            type: string
+            length: 255
+            column: first_name
+        lastName:
+            type: string
+            length: 255
+            column: last_name
+        address:
+            type: text
+        pincode:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+        mobile:
+            type: string
+            length: 255
+        website:
+            type: string
+            length: 255
+    oneToMany:
+      purchaseorder:
+        targetEntity: PurchaseOrder
+        mappedBy: customer
+    lifecycleCallbacks: {  }

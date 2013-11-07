@@ -1,0 +1,21 @@
+Application\Sonata\SuperMarketBundle\Entity\Category:
+    type: entity
+    table: null
+    repositoryClass: Application\Sonata\SuperMarketBundle\Entity\CategoryRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+    manyToMany:
+      products:
+        targetEntity: Product
+        mappedBy: category
+    lifecycleCallbacks: {  }

@@ -1,0 +1,51 @@
+Application\Sonata\SuperMarketBundle\Entity\Product:
+    type: entity
+    table: null
+    repositoryClass: Application\Sonata\SuperMarketBundle\Entity\ProductRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+        description:
+            type: text
+        summary:
+            type: text
+        isActive:
+            type: boolean
+            column: is_active
+        price:
+            type: float
+        quantity:
+            type: integer
+        slug:
+            type: string
+            length: 255
+    manyToOne:
+      brand:
+          targetEntity: Brand
+          joinColumn:
+            name: brand_id
+            referencedColumnName: id
+    manyToMany:
+        category:
+          targetEntity: Category
+          inversedBy: products
+          joinTable:
+              name: products_hub_product_category
+              joinColumns:
+                product_id:
+                  referencedColumnName: id
+              inverseJoinColumns:
+                catagory_id:
+                  referencedColumnName: id
+    oneToMany:
+     orderItem:
+       targetEntity: Product
+       mappedBy: products
+       cascade: [persist, remove]
+    lifecycleCallbacks: {  }
