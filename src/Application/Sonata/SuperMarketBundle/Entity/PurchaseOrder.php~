@@ -108,4 +108,50 @@ class PurchaseOrder
     {
         return $this->customer;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orderitem;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->orderitem = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add orderitem
+     *
+     * @param \Application\Sonata\SuperMarketBundle\Entity\OrderItem $orderitem
+     * @return PurchaseOrder
+     */
+    public function addOrderitem(\Application\Sonata\SuperMarketBundle\Entity\OrderItem $orderitem)
+    {
+        $orderitem->setPurchaseorder($this);
+        $this->orderitem[] = $orderitem;
+    
+        return $this;
+    }
+
+    /**
+     * Remove orderitem
+     *
+     * @param \Application\Sonata\SuperMarketBundle\Entity\OrderItem $orderitem
+     */
+    public function removeOrderitem(\Application\Sonata\SuperMarketBundle\Entity\OrderItem $orderitem)
+    {
+        $this->orderitem->removeElement($orderitem);
+    }
+
+    /**
+     * Get orderitem
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrderitem()
+    {
+        return $this->orderitem;
+    }
 }

@@ -129,6 +129,7 @@ class PurchaseOrder
      */
     public function addOrderitem(\Application\Sonata\SuperMarketBundle\Entity\OrderItem $orderitem)
     {
+        $orderitem->setPurchaseorder($this);
         $this->orderitem[] = $orderitem;
     
         return $this;
