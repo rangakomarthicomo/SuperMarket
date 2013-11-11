@@ -265,4 +265,9 @@ class Customer
     {
         return $this->purchaseorder;
     }
+    
+    
+    public function __toString() {
+        return $this->getFirstName().' '.$this->getLastName();
+    }
 }

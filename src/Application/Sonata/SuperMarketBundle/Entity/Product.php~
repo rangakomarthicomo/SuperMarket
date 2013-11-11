@@ -293,4 +293,42 @@ class Product
     {
         return $this->category;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orderItem;
+
+
+    /**
+     * Add orderItem
+     *
+     * @param \Application\Sonata\SuperMarketBundle\Entity\Product $orderItem
+     * @return Product
+     */
+    public function addOrderItem(\Application\Sonata\SuperMarketBundle\Entity\Product $orderItem)
+    {
+        $this->orderItem[] = $orderItem;
+    
+        return $this;
+    }
+
+    /**
+     * Remove orderItem
+     *
+     * @param \Application\Sonata\SuperMarketBundle\Entity\Product $orderItem
+     */
+    public function removeOrderItem(\Application\Sonata\SuperMarketBundle\Entity\Product $orderItem)
+    {
+        $this->orderItem->removeElement($orderItem);
+    }
+
+    /**
+     * Get orderItem
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrderItem()
+    {
+        return $this->orderItem;
+    }
 }

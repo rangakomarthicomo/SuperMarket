@@ -45,7 +45,7 @@ class OrderItemAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('products','entity',array('class' => 'ApplicationSonataSuperMarketBundle:Product','property' => 'name','attr' => array('onchange' => 'clickme(this.id)')))
+            ->add('products','entity',array('class' => 'ApplicationSonataSuperMarketBundle:Product','property' => 'name','attr' => array('name'=> 'productname','onchange' => 'clickme(this.id)')))
             //->add('price','entity',array('class' => 'ApplicationSonataSuperMarketBundle:Product','property' => 'price','attr' => array('class' => 'select')))
             ->add('price','text',array('attr' => array('class' => 'price')))
             ->add('quantity','text',array('attr' => array('oninput' => 'inputValue(this.id)')))

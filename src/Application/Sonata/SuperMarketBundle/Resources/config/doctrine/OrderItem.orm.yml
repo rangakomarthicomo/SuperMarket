@@ -10,14 +10,20 @@ Application\Sonata\SuperMarketBundle\Entity\OrderItem:
                 strategy: AUTO
         quantity:
             type: integer
+        total:
+            type: float
+        price:
+            type: float
     manyToOne:
      purchaseorder:
          targetEntity: PurchaseOrder
+         inversedBy: orderitem
          joinColumn:
            name: purchase_id
            referencedColumnName: id
      products:
         targetEntity: Product
+        inversedBy: orderitem
         joinColumn:
           name: product_order_id
           referencedColumnName: id

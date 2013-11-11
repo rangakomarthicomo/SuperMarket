@@ -33,9 +33,20 @@ class PurchaseOrderAdmin extends Admin
             ->add('orderDate')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
+                    'view' => array(
+                        'template'=>'ApplicationSonataSuperMarketBundle:CRUD:list__action_view.html.twig'
+                        ),
+                    'process' => array(
+                        
+                         'template'=>'ApplicationSonataSuperMarketBundle:CRUD:list__action_process.html.twig'
+                    ),
+                    'close' => array(
+                        
+                         'template'=>'ApplicationSonataSuperMarketBundle:CRUD:list__action_close.html.twig'
+                    ),
+                   
                 )
             ))
         ;
@@ -45,13 +56,18 @@ class PurchaseOrderAdmin extends Admin
      * @param FormMapper $formMapper
      */
     protected function configureFormFields(FormMapper $formMapper)
-    {
+ {
         $formMapper
-            ->add('status')
-            ->add('customer','shtumi_ajax_autocomplete', array('entity_alias'=>'customers'))
-            ->add('orderitem','sonata_type_collection',array('type_options' => array('delete' => false)),array(
-                'edit' => 'inline','inline' => 'table', 'sortable' => 'position'))
-            ->add('orderDate','date',array('widget' => 'single_text','attr' => array('class' => 'datepicker')))
+             ->with('Order Details')
+                ->add('status', 'text',array('attr' => array('name' => 'status','value' => 'OPEN','readonly' => 'true')))
+                ->add('customer', 'shtumi_ajax_autocomplete', array('entity_alias' => 'customers'))
+                ->add('orderDate', 'date', array('widget' => 'single_text', 'attr' => array('class' => 'datepicker')))
+             ->end()
+             ->with('Order Items')
+                ->add('orderitem', 'sonata_type_collection', array('by_reference' => false,'type_options' => array('delete' => false)), array(
+                    'edit' => 'inline', 'inline' => 'table', 'sortable' => 'position',
+                    'targetEntity' => 'Application\Sonata\SuperMarketBundle\Entity\OrderItem'))
+            ->end()    
         ;
     }
 
@@ -64,6 +80,22 @@ class PurchaseOrderAdmin extends Admin
  
             ->add('status')
             ->add('orderDate')
+            ->add('customer')
+            ->add('orderitem')
         ;
     }
+    
+    
+    public function getTemplate($name) {
+        
+        if($name == 'show')
+        {
+            return 'ApplicationSonataSuperMarketBundle:CRUD:show.html.twig';
+        }
+        return parent::getTemplate($name);
+    }
+
+    
+    
+
 }

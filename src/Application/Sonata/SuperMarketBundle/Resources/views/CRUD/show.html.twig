@@ -1,0 +1,78 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'SonataAdminBundle:CRUD:base_show.html.twig' %}
+{% block show %}
+    <div class="sonata-ba-view">
+        {% for name, view_group in admin.showgroups %}
+            
+            <table class="table table-bordered">
+                {% if name %}
+                    <tr class="sonata-ba-view-title">
+                        <td colspan="2">
+                            {{ admin.trans(name) }}
+                        </td>
+                    </tr>
+                {% endif %}
+
+                {% for field_name in view_group.fields %}
+                    
+                        <tr class="sonata-ba-view-container">
+
+                                {% if elements[field_name] is defined %}
+                                    {% if field_name == 'orderitem' %}
+                                    <th>Order Items</th>
+                                    <td>
+                                        <table class="table table-bordered">
+                                                    <tr><th>Id</th>
+                                                        <th>Products</th>
+                                                        <th>Price</th>
+                                                        <th>Quantity</th>
+                                                        <th>Total Price of Product<br/>(In Rs)</th>
+                                                    </tr>
+                                        <tbody>
+                                        {% set total = 0 %}
+                                        {% for item in object.orderitem %}
+                                            <tr class="sonata-ba-view-container">
+                                                
+                                            <td>{{ item.id }}</td>
+                                            <td>{{ item.products }}</td>
+                                            <td>{{ item.price }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.total }} {% set total = total + item.total %}</td>                                           
+                                            </tr>
+                                           
+                                        {% else %}
+                                            <tr class="sonata-ba-view-container"><td colspan="2">No Orders</td></tr>
+                                        {% endfor %}
+                                            
+                                             <tr>
+                                                 
+                                              <th colspan="4"><label style="color:blue;">Total Price</label></th> 
+                                              
+                                              <th><label style="color:red;">{{ total }}</label></th>
+                                             
+                                             
+                                             </tr>
+                                        </tbody>
+                                    </td>
+                                    {% else %}
+                                        {{ elements[field_name]|render_view_element(object) }}
+                                    {% endif %}
+                                {% endif %}
+                        </tr>
+                     
+                {% endfor %}
+            </table>
+        
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -331,4 +331,10 @@ class Product
     {
         return $this->orderItem;
     }
+    
+    
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
