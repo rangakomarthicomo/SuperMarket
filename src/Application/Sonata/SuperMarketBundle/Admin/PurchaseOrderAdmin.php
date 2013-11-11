@@ -40,7 +40,7 @@ class PurchaseOrderAdmin extends Admin
                         ),
                     'process' => array(
                         
-                         'template'=>'ApplicationSonataSuperMarketBundle:CRUD:list__action_process.html.twig'
+                         'template'=>'ApplicationSonataSuperMarketBundle:CRUD:list__action_process.html.twig',
                     ),
                     'close' => array(
                         
@@ -59,7 +59,7 @@ class PurchaseOrderAdmin extends Admin
  {
         $formMapper
              ->with('Order Details')
-                ->add('status', 'text',array('attr' => array('name' => 'status','value' => 'OPEN','readonly' => 'true')))
+                ->add('status', 'text',array('attr' => array('name' => 'status')))
                 ->add('customer', 'shtumi_ajax_autocomplete', array('entity_alias' => 'customers'))
                 ->add('orderDate', 'date', array('widget' => 'single_text', 'attr' => array('class' => 'datepicker')))
              ->end()
@@ -95,7 +95,10 @@ class PurchaseOrderAdmin extends Admin
         return parent::getTemplate($name);
     }
 
-    
-    
+    protected function configureRoutes(\Sonata\AdminBundle\Route\RouteCollection $collection) {
+      $collection->add('process', $this->getRouterIdParameter().'/process');
+      $collection->add('close', $this->getRouterIdParameter().'/close');
+    }
+
 
 }

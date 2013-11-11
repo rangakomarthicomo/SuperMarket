@@ -40,3 +40,6 @@ services:
         arguments: [~, Application\Sonata\SuperMarketBundle\Entity\OrderItem, ApplicationSonataSuperMarketBundle:OrderItemAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Order Block, label: OrderItem }
+
+       
+       
