@@ -10,7 +10,9 @@ file that was distributed with this source code.
 #}
 
 {% extends 'SonataAdminBundle:CRUD:base_show.html.twig' %}
+ 
 {% block show %}
+
     <div class="sonata-ba-view">
         {% for name, view_group in admin.showgroups %}
             
@@ -75,4 +77,10 @@ file that was distributed with this source code.
         
         {% endfor %}
     </div>
+<a href="{{ admin.generateObjectUrl('pdf', object) }}" class="btn btn-danger" title="{{ 'PDF'|trans({}, 'SonataAdminBundle') }}">
+        <i class="icon-zoom-in"></i>
+        {{ 'Download Bill'|trans({}, 'SonataAdminBundle') }}
+</a>
+
+
 {% endblock %}

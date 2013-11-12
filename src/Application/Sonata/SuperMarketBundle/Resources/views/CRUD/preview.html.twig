@@ -1,0 +1,25 @@
+
+
+{# 'AcmeDemoBundle:CRUD:preview.html.twig #}
+
+{% extends 'AcmeDemoBundle::layout.html.twig' %}
+
+{% use 'SonataAdminBundle:CRUD:base_edit_form.html.twig' with form as parentForm %}
+
+{% block templateContent %} 
+    {% set article = object %}
+
+    {{ parent() }}
+
+    <div class="sonata-preview-form">
+        {{ block('parentForm') }}
+    </div>
+
+{% endblock %}
+
+{% block formactions %}
+    <input class="btn btn-success" type="submit" name="btn_preview_approve" value="{{ 'btn_preview_approve'|trans({}, 'SonataAdminBundle') }}"/>
+    <input class="btn btn-danger" type="submit" name="btn_preview_decline" value="{{ 'btn_preview_decline'|trans({}, 'SonataAdminBundle') }}"/>
+{% endblock %}
+
+

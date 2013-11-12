@@ -4,6 +4,4 @@ application_sonata_super_market_homepage:
 application_sonata_supermarket_price:
     pattern: /price
     defaults: { _controller: ApplicationSonataSuperMarketBundle:Price:getPrice }
-#application_sonata_supermarket_process:
-#    pattern: /admin/sonata/supermarket/purchaseorder/{id}/process
-#    defaults: { _controller: ApplicationSonataSuperMarketBundle:Process:process }
+

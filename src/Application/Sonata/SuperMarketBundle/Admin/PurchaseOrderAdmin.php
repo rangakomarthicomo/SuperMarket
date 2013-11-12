@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class PurchaseOrderAdmin extends Admin
 {
+     public $supportsPreviewMode = true;
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -88,16 +89,30 @@ class PurchaseOrderAdmin extends Admin
     
     public function getTemplate($name) {
         
-        if($name == 'show')
+        
+    switch ($name) {
+        case 'show':
+            return 'ApplicationSonataSuperMarketBundle:CRUD:show.html.twig';
+            break;
+        case 'preview':
+            return 'ApplicationSonataSuperMarketBundle:CRUD:preview.html.twig';
+            break;
+        default:
+            return parent::getTemplate($name);
+            break;
+    }
+        
+        /*if($name == 'show')
         {
             return 'ApplicationSonataSuperMarketBundle:CRUD:show.html.twig';
         }
-        return parent::getTemplate($name);
+        return parent::getTemplate($name);*/
     }
 
     protected function configureRoutes(\Sonata\AdminBundle\Route\RouteCollection $collection) {
       $collection->add('process', $this->getRouterIdParameter().'/process');
       $collection->add('close', $this->getRouterIdParameter().'/close');
+      $collection->add('pdf', $this->getRouterIdParameter().'/pdf');
     }
 
 
